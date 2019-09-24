@@ -1,11 +1,35 @@
 import React from 'react';
 import Login from "./src/screens/login";
+import CardForm from "./src/screens/cardform"
+import { createSwitchNavigator,createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import { createDrawerNavigator } from "react-navigation-drawer";
 
-class Navigation extends React.Component {
+const StackNavigator = createStackNavigator({
+  Login: {
+    screen: Login
+  },
+},{headerMode: "none" });
 
-    render() {
-      return <Login />;
+
+const AppStackNavigator = createDrawerNavigator(
+  {
+    CardForm: {
+      screen: CardForm
     }
   }
-  
-  export default Navigation;
+);
+
+const SwitchNavigator = createSwitchNavigator(
+  {
+    InitialRoute: Login,
+    Auth: StackNavigator,
+    App: AppStackNavigator
+  },
+  {
+    initialRouteName: 'InitialRoute',
+  }
+);
+
+const Navigation = createAppContainer(SwitchNavigator);
+export default Navigation;
