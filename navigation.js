@@ -1,9 +1,10 @@
-import React from 'react';
 import Login from "./src/screens/login";
+import Welcome from "./src/screens/welcome";
 import CardForm from "./src/screens/cardform"
 import { createSwitchNavigator,createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createDrawerNavigator } from "react-navigation-drawer";
+import cookie from 'cross-cookie';
 
 const StackNavigator = createStackNavigator({
   Login: {
@@ -22,7 +23,7 @@ const AppStackNavigator = createDrawerNavigator(
 
 const SwitchNavigator = createSwitchNavigator(
   {
-    InitialRoute: Login,
+    InitialRoute: Welcome,
     Auth: StackNavigator,
     App: AppStackNavigator
   },

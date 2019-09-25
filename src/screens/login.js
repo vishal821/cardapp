@@ -4,6 +4,7 @@ import styles from "../styles/LoginStyle";
 import gstyle from "../styles/GlobalStyle";
 import {FormTextInput} from "../components/FormElement";
 import CustomButtom from "../components/CustomButton";
+import cookie from 'cross-cookie';
 
 const logourl = require("../images/logo.png");
 const userdetails = {
@@ -55,7 +56,10 @@ class Login extends React.Component {
                 this.setState({
                     invalid: false
                 });
-                this.props.navigation.navigate("CardForm");
+                cookie.set('userlogin', {
+                    isuserloggedin: true,
+                    expires: 2
+                }).then(() => this.props.navigation.navigate("CardForm"));   
             } else {
                 this.setState({
                     invalid: true

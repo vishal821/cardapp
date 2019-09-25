@@ -11,3 +11,4 @@ App to display user card details
 6. On Clicking of Disagree button the user will again get redirected to login screens.
 7. After Clicking on Agree button the card form will open.The form consists of Card Number, Expiry Date,CVV,User Email,User Mobile & Cities Fields.
 8. After filling the form the user card info will get stored for two days.With in this period of time if user will use the app he would be able to see his card details.
+9. The App is having the list page to view user data
