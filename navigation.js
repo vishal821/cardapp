@@ -1,10 +1,12 @@
+import React from 'react';
 import Login from "./src/screens/login";
 import Welcome from "./src/screens/welcome";
-import CardForm from "./src/screens/cardform"
+import CardForm from "./src/screens/cardform";
+import UserDetails from "./src/screens/userdetails";
 import { createSwitchNavigator,createAppContainer } from "react-navigation";
+import Header from './src/components/DrawerHeader';
 import { createStackNavigator } from "react-navigation-stack";
 import { createDrawerNavigator } from "react-navigation-drawer";
-import cookie from 'cross-cookie';
 
 const StackNavigator = createStackNavigator({
   Login: {
@@ -15,8 +17,18 @@ const StackNavigator = createStackNavigator({
 
 const AppStackNavigator = createDrawerNavigator(
   {
+    UserDetails: {
+      screen: UserDetails
+    },
     CardForm: {
       screen: CardForm
+    }
+  },
+  {
+    drawerWidth: 230,
+    contentComponent: props => <Header {...props} />,
+    contentOptions: {
+      marginRight: 0,
     }
   }
 );

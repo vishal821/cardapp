@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet,View, ActivityIndicator } from 'react-native';
 import cookie from 'cross-cookie';
 
 class Welcome extends React.Component {
@@ -19,13 +19,18 @@ class Welcome extends React.Component {
         };
     render() {
         return (
-            <View>
-                <Text>
-                    Welcome
-                </Text>
+            <View style={styles.container}>
+                <ActivityIndicator size="large" color="#ee6e18" />
             </View>
         );
     }
 }
+const styles = StyleSheet.create({
+    container: {
+        display: "flex",
+        flex: 1,
+        justifyContent: "center"
+    }
+  })
   
 export default Welcome;

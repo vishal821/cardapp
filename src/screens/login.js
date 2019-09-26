@@ -59,7 +59,7 @@ class Login extends React.Component {
                 cookie.set('userlogin', {
                     isuserloggedin: true,
                     expires: 2
-                }).then(() => this.props.navigation.navigate("CardForm"));   
+                }).then(() => this.props.navigation.navigate("UserDetails"));   
             } else {
                 this.setState({
                     invalid: true
