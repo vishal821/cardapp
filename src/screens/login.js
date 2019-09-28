@@ -51,20 +51,19 @@ class Login extends React.Component {
         });
     }
     submitForm() {
-        if (this.state.errors.email == "" && this.state.errors.password == "") {
-            if(this.state.fields.email === userdetails.email && this.state.fields.password === userdetails.password) {
-                this.setState({
-                    invalid: false
-                });
-                cookie.set('userlogin', {
-                    isuserloggedin: true,
-                    expires: 2
-                }).then(() => this.props.navigation.navigate("UserDetails"));   
-            } else {
-                this.setState({
-                    invalid: true
-                })
-            }
+        if (this.state.errors.email == "" && this.state.errors.password == "" && this.state.fields.email === userdetails.email && this.state.fields.password === userdetails.password) {
+            this.setState({
+                invalid: false
+            });
+            cookie.set('userlogin', {
+                isuserloggedin: true,
+                expires: 2
+            }).then(() => this.props.navigation.navigate("UserDetails"));   
+        }
+        else {
+            this.setState({
+                invalid: true
+            })
         }
     }
     render() {

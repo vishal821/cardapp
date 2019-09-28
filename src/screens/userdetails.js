@@ -56,7 +56,8 @@ class UserDetails extends React.Component {
         }).then(() => this.showModal());   
     }
     disagreedTerms() {
-        this.props.navigation.navigate("Login");
+        cookie.clearAll()
+        .then(() => this.props.navigation.navigate('Login'));
     }
     render() {
         return (
