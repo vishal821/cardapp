@@ -4,11 +4,11 @@ import styles from "../styles/LoginStyle";
 import detailstyle from "../styles/UserDetailsStyle";
 import CardView from 'react-native-cardview';
 import CustomButtom from "../components/CustomButton";
-import axios from "axios";
 import cookie from 'cross-cookie';
 import Icon from "react-native-vector-icons/FontAwesome";
+import { getdetailslist } from "../actions/userDetailsAction";
+import { connect } from "react-redux";
 
-const URL = "https://jsonplaceholder.typicode.com/posts";
 const icon = require("../images/usericon.png");
 class UserDetails extends React.Component {
     constructor(props) {
@@ -31,18 +31,16 @@ class UserDetails extends React.Component {
         });
     }
     componentDidMount() {
-        axios({
-            method: "GET",
-            url: `${URL}`
-        }).then((res) => {
-            if (res.status === 200) {
-                this.setState({
-                    details: res.data
-                });
-            }
-        }).catch((error) => {
-            console.log("no records found");
-        });
+        this.props.fetchData();
+    }
+    componentDidUpdate(nextProps) {
+        if(this.props.userDetailsReducer && this.props.userDetailsReducer.dataList != nextProps.userDetailsReducer.dataList && this.props.userDetailsReducer.dataListSuccess === true) {
+          if(this.props.userDetailsReducer.dataList.length > 0) {
+            this.setState({
+                details: this.props.userDetailsReducer.dataList
+            })
+          }
+        }
     }
     showModal() {
         this.setState({
@@ -155,5 +153,19 @@ class UserDetails extends React.Component {
         );
     }
 }
+function mapStateToProps(state) {
+    return {
+      userDetailsReducer: state.userDetailsReducer,
+    };
+  }
   
-export default UserDetails;
+  function mapDispatchToProps(dispatch) {
+    return {
+      fetchData: () => dispatch(getdetailslist()),
+    };
+  }
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(UserDetails);
