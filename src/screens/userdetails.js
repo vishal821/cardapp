@@ -57,44 +57,34 @@ class UserDetails extends React.Component {
         cookie.clearAll()
         .then(() => this.props.navigation.navigate('Login'));
     }
+    getDetails(id) {
+        this.props.navigation.navigate('UserDetailsDesc', {
+            id: id
+        });
+    }
     render() {
         return (
             <View style={styles.formInput}>
-                <View style={detailstyle.fieldSpacing}>
-                    <View style={{flex: 0.1}}>
-                        <TouchableOpacity onPress={() => {this.props.navigation.toggleDrawer()}} hitSlop={{top: 20, bottom: 20, left: 50, right: 50}}>
-                            <Icon name='bars' style={detailstyle.iconStyle}/>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{flex: 0.9}}>
-                        <Text style={detailstyle.heading}>
-                            Users Details List
-                        </Text>
-                    </View>
-                </View>
                 <ScrollView>
                 {this.state.details.length > 0 && this.state.details.map((u, i) => {
                     return (
-                        <CardView key={i} cardElevation={5} cardMaxElevation={2} cornerRadius={8} style={detailstyle.cardStyle}>
-                            <View style={detailstyle.cardinsidestyle}>
-                                <View style={{flex: 1.3}}> 
-                                    <Image source={icon}/>
+                        <TouchableOpacity key={i}>
+                            <CardView cardElevation={5} cardMaxElevation={2} cornerRadius={8} style={detailstyle.cardStyle}>
+                                <View style={detailstyle.cardinsidestyle}>
+                                    <View style={{flex: 1.3}}> 
+                                        <Image source={icon}/>
+                                    </View>
+                                    <View style={{flex: 8.7}}>
+                                        <Text style={detailstyle.termsheading}>
+                                            {u.title}
+                                        </Text>
+                                    </View>
                                 </View>
-                                <View style={{flex: 8.7}}>
-                                    <Text style={detailstyle.termsheading}>
-                                        {u.title}
-                                    </Text>
-                                </View>
-                            </View>
-                            <View>
-                                <Text style={detailstyle.termsdesc}>
-                                    {u.body}
-                                </Text>
-                            </View>
-                        </CardView>
+                            </CardView>
+                        </TouchableOpacity>
                     )
                 })}
-                                       </ScrollView>
+                </ScrollView>
                 <Modal
                     animationType="slide"
                     transparent={false}

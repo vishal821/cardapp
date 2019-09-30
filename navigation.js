@@ -1,36 +1,35 @@
 import React from 'react';
 import Login from "./src/screens/login";
 import Welcome from "./src/screens/welcome";
+import Header from "./src/components/Header";
 import CardForm from "./src/screens/cardform";
 import UserDetails from "./src/screens/userdetails";
+import UserDetailsDesc from "./src/screens/userdetailsdesc"; 
 import { createSwitchNavigator,createAppContainer } from "react-navigation";
-import Header from './src/components/DrawerHeader';
 import { createStackNavigator } from "react-navigation-stack";
-import { createDrawerNavigator } from "react-navigation-drawer";
 
 const StackNavigator = createStackNavigator({
   Login: {
     screen: Login
-  },
+  }
 },{headerMode: "none" });
 
 
-const AppStackNavigator = createDrawerNavigator(
+const AppStackNavigator = createStackNavigator(
   {
+    Header: {
+      screen: Header
+    },
     UserDetails: {
       screen: UserDetails
+    },
+    UserDetailsDesc: {
+      screen: UserDetailsDesc
     },
     CardForm: {
       screen: CardForm
     }
-  },
-  {
-    drawerWidth: 230,
-    contentComponent: props => <Header {...props} />,
-    contentOptions: {
-      marginRight: 0,
-    }
-  }
+  },{headerMode: "none" }
 );
 
 const SwitchNavigator = createSwitchNavigator(

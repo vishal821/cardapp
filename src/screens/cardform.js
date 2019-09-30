@@ -130,21 +130,10 @@ class CardForm extends React.Component {
     render() {
         return (
             <View style={styles.formInput}>
-                <View style={cardstyle.fieldSpacing}>
-                    <View style={{flex: 0.1}}>
-                        <TouchableOpacity onPress={() => {this.props.navigation.toggleDrawer()}} hitSlop={{top: 20, bottom: 20, left: 50, right: 50}}>
-                            <Icon name='bars' style={cardstyle.iconStyle}/>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{flex: 0.9}}>
-                        <Text style={cardstyle.heading}>
-                            Users Card Form
-                        </Text>
-                    </View>
-                </View>
                 <View style={styles.formSpacing}>
                     <FormTextInput
                         label="Card Number"
+                        keyboardType='numeric'
                         value={this.state.fields.cardnumber}
                         onChangeText={cardnumber => this.validate(cardnumber,"cardnumber")}
                     />
@@ -172,6 +161,7 @@ class CardForm extends React.Component {
                     <View style={{flex: 0.4}}>
                         <FormTextInput
                             label="CVV"
+                            keyboardType='numeric'
                             value={this.state.fields.cvv}
                             onChangeText={cvv => this.validate(cvv, "cvv")}
                         />
@@ -199,6 +189,7 @@ class CardForm extends React.Component {
                 <View style={styles.formSpacing}>
                     <FormTextInput
                         label="User Mobile"
+                        keyboardType='numeric'
                         value={this.state.fields.mobile}
                         onChangeText={mobile => this.validate(mobile,"mobile")}
                     />
